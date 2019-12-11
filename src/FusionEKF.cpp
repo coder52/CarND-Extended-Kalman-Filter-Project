@@ -83,11 +83,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       double ro = measurement_pack.raw_measurements_(0);
       double theta= measurement_pack.raw_measurements_(1);
       double ro_dot = measurement_pack.raw_measurements_(2);
-
-      // Normalize theta
-      while (theta > M_PI)  theta -= 2.0 * M_PI;
-      while (theta < -M_PI) theta += 2.0 * M_PI;
-
+      
       ekf_.x_ << ro * cos(theta),
                  ro * sin(theta),
                  ro_dot * cos(theta),
